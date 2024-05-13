@@ -41,15 +41,15 @@ Run tests:
 npm run test
 ```
 
-Lint & fix
+Lint & fix:
 
 ```bash
 npm run lint
 npm run lint:fix
 ```
 
-Run in Github Actions
-> Currently test is setup to execute in github action on push event. You need to [create github secrete]((https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)) for `GO_RES_USER_TOKEN` with value generated in `Setup user token` step.
+Run in Github Actions :<br>
+Currently test is setup to execute in github action on push event. You need to [create github secrete]((https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)) with name `API_TOKEN` with value generated in `Setup user token` step.
 
 Sample Report
 ![SampleReport](./assets/report.png)
