@@ -49,7 +49,7 @@ npm run lint:fix
 ```
 
 Github Actions :<br> <br>
-Currently test is setup to execute in github action on push event. You need to [create github secrete]((https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)) with name `API_TOKEN` and value generated in `Setup user token` step. <br> <br>
+Currently test is setup to execute in github action on push event. You need to [create github secrete](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository) with name `API_TOKEN` and value generated in `Setup user token` step. <br> <br>
 
 <b> Github Permission to update report: </b> Go to Repository -> Settings -> Actions -> General <br>
 Scroll to bottom of the page and look for 'Workflow permissions' section <br>
