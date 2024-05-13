@@ -8,12 +8,14 @@ import { queryAllUserPayload, queryUserByIdPayload } from '../payload/queries';
 import { INonExistingUserError, IUser, IUserCreate, IUserDelete, IUserUpdate, IUsers } from '../types/users';
 config();
 
+const TOKEN = process.env.GO_RES_USER_TOKEN;
+
 describe('go rest graphql tests', () => {
 
     let userId: number;
 
     it('should query all users', async () => {
-        const response = await queryGraphQl(process.env.GO_RES_USER_TOKEN, queryAllUserPayload);
+        const response = await queryGraphQl(TOKEN, queryAllUserPayload);
         expect(response.statusCode).equal(200);
 
         const responseData: IUsers = response.body.data;
@@ -34,7 +36,7 @@ describe('go rest graphql tests', () => {
 
     it('should create user', async () => {
 
-        const response = await mutateGraphQl(process.env.TOKEN, createUserPayload(createUserData.name, createUserData.gender, createUserData.email, createUserData.status));
+        const response = await mutateGraphQl(TOKEN, createUserPayload(createUserData.name, createUserData.gender, createUserData.email, createUserData.status));
         expect(response.statusCode).equal(200);
 
         const responseData: IUserCreate = response.body.data;
@@ -54,7 +56,7 @@ describe('go rest graphql tests', () => {
 
     it('should query user by id', async () => {
 
-        const response = await queryGraphQl(process.env.TOKEN, queryUserByIdPayload(userId));
+        const response = await queryGraphQl(TOKEN, queryUserByIdPayload(userId));
         expect(response.statusCode).equal(200);
 
         expect(response.body.data).not.undefined;
@@ -74,7 +76,7 @@ describe('go rest graphql tests', () => {
 
     it('should update user by id', async () => {
 
-        const response = await queryGraphQl(process.env.TOKEN, updateUserPayload(userId, updateUserData.name, updateUserData.gender, updateUserData.email, updateUserData.status));
+        const response = await queryGraphQl(TOKEN, updateUserPayload(userId, updateUserData.name, updateUserData.gender, updateUserData.email, updateUserData.status));
         expect(response.statusCode).equal(200);
 
         expect(response.body.data).not.undefined;
@@ -95,7 +97,7 @@ describe('go rest graphql tests', () => {
     });
 
     it('should delete user', async () => {
-        const response = await queryGraphQl(process.env.TOKEN, deleteUserPayload(userId));
+        const response = await queryGraphQl(TOKEN, deleteUserPayload(userId));
         expect(response.statusCode).equal(200);
 
         expect(response.body.data).not.undefined;
@@ -116,7 +118,7 @@ describe('go rest graphql tests', () => {
 
     it('should query non existing user by id', async () => {
 
-        const response = await queryGraphQl(process.env.TOKEN, queryUserByIdPayload(userId));
+        const response = await queryGraphQl(TOKEN, queryUserByIdPayload(userId));
         expect(response.statusCode).equal(200);
 
         expect(response.body.data.user).to.be.null;
@@ -133,7 +135,7 @@ describe('go rest graphql tests', () => {
     });
 
     it('should query user count only using directives', async () => {
-        const response = await queryGraphQl(process.env.TOKEN, queryUsersWithNodeDirectivePayload(false));
+        const response = await queryGraphQl(TOKEN, queryUsersWithNodeDirectivePayload(false));
         expect(response.statusCode).equal(200);
 
         const responseData: IUsers = response.body.data;
@@ -144,7 +146,7 @@ describe('go rest graphql tests', () => {
     });
 
     it('should query user with all nodes using directives', async () => {
-        const response = await queryGraphQl(process.env.TOKEN, queryUsersWithNodeDirectivePayload(true));
+        const response = await queryGraphQl(TOKEN, queryUsersWithNodeDirectivePayload(true));
         expect(response.statusCode).equal(200);
 
         const responseData: IUsers = response.body.data;
