@@ -13,7 +13,7 @@ describe('go rest graphql tests', () => {
     let userId: number;
 
     it('should query all users', async () => {
-        const response = await queryGraphQl(process.env.TOKEN, queryAllUserPayload);
+        const response = await queryGraphQl(process.env.GO_RES_USER_TOKEN, queryAllUserPayload);
         expect(response.statusCode).equal(200);
 
         const responseData: IUsers = response.body.data;
