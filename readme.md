@@ -89,3 +89,15 @@ Sample Report
 | Eslint          | https://eslint.org/docs/latest/use/getting-started          |
 | Husky           | https://typicode.github.io/husky/                           |
 | VScode settings | https://code.visualstudio.com/docs/getstarted/settings      |
+
+
+### GraphQL Topics to Explore
+ - [x] basics of GraphQL (query, mutation)
+ - [ ] advance topics (fragments, directive, unions, aliases)
+ - [ ] parameterize query with arguments and variables
+ - [ ] setting default variable
+ - [ ] variables inside fragments
+ - [ ] use of directive to build dynamic/reusable query
+ - [ ] fields in query vs fields in mutation
+ - [ ] inline fragments (unions)
+ - [ ] meta fields (fetch type of field __typename)
