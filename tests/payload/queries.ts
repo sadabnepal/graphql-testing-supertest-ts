@@ -11,7 +11,7 @@ export const queryAllUserPayload = `{
     }
 }`;
 
-export const queryUserByIdPayload = (id: string | number) => {
+export const queryUserByIdPayload = (id: number) => {
     return `query User {
         user(id: "${id}") {
             email

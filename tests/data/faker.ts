@@ -1,16 +1,19 @@
 import { faker } from '@faker-js/faker';
-import { genderType, statusType } from '../types/faker';
+import { IUser, IUserOmittedID } from '../types/users';
 
-export const createUserData = {
+export const createUserData: IUserOmittedID = {
     name: faker.person.fullName(),
-    gender: 'male' as genderType,
+    gender: faker.person.sexType(),
     email: faker.internet.email(),
-    status: 'active' as statusType
+    status: 'active'
 };
 
-export const updateUserData = {
-    name: faker.person.fullName(),
-    gender: 'female' as genderType,
-    email: faker.internet.email(),
-    status: 'active' as statusType
+export const updateUserData = (userId: number): IUser => {
+    return {
+        id: userId,
+        name: faker.person.fullName(),
+        gender: faker.person.sexType(),
+        email: faker.internet.email(),
+        status: 'active'
+    }
 };

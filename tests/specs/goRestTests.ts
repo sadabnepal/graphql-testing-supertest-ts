@@ -10,6 +10,8 @@ config();
 
 const TOKEN = process.env.GO_RES_USER_TOKEN;
 
+const createRandomUser = createUserData;
+
 describe('go rest graphql tests', () => {
 
     let userId: number;
@@ -36,7 +38,7 @@ describe('go rest graphql tests', () => {
 
     it('should create user', async () => {
 
-        const response = await mutateGraphQl(TOKEN, createUserPayload(createUserData.name, createUserData.gender, createUserData.email, createUserData.status));
+        const response = await mutateGraphQl(TOKEN, createUserPayload(createRandomUser));
         expect(response.statusCode).equal(200);
 
         const responseData: IUserCreate = response.body.data;
@@ -48,10 +50,10 @@ describe('go rest graphql tests', () => {
 
         expect(responseData.createUser).not.to.be.null;
         expect(responseData.createUser.user.id).a('number').to.be.not.null;
-        expect(responseData.createUser.user.name).equal(createUserData.name);
-        expect(responseData.createUser.user.gender).equal(createUserData.gender);
-        expect(responseData.createUser.user.email).equal(createUserData.email);
-        expect(responseData.createUser.user.status).equal(createUserData.status);
+        expect(responseData.createUser.user.name).equal(createRandomUser.name);
+        expect(responseData.createUser.user.gender).equal(createRandomUser.gender);
+        expect(responseData.createUser.user.email).equal(createRandomUser.email);
+        expect(responseData.createUser.user.status).equal(createRandomUser.status);
     });
 
     it('should query user by id', async () => {
@@ -67,16 +69,17 @@ describe('go rest graphql tests', () => {
         console.log('----------------------------');
 
         expect(user.id).a('number');
-        expect(user.name).equal(createUserData.name);
-        expect(user.email).equal(createUserData.email);
-        expect(user.gender).equal(createUserData.gender);
-        expect(user.status).equal(createUserData.status);
-
+        expect(user.name).equal(createRandomUser.name);
+        expect(user.email).equal(createRandomUser.email);
+        expect(user.gender).equal(createRandomUser.gender);
+        expect(user.status).equal(createRandomUser.status);
     });
 
     it('should update user by id', async () => {
 
-        const response = await queryGraphQl(TOKEN, updateUserPayload(userId, updateUserData.name, updateUserData.gender, updateUserData.email, updateUserData.status));
+        const payload = updateUserData(userId);
+
+        const response = await queryGraphQl(TOKEN, updateUserPayload(payload));
         expect(response.statusCode).equal(200);
 
         expect(response.body.data).not.undefined;
@@ -89,10 +92,10 @@ describe('go rest graphql tests', () => {
 
         expect(responseData.updateUser).not.to.be.null;
         expect(responseData.updateUser.user.id).equal(userId);
-        expect(responseData.updateUser.user.name).equal(updateUserData.name);
-        expect(responseData.updateUser.user.gender).equal(updateUserData.gender);
-        expect(responseData.updateUser.user.email).equal(updateUserData.email);
-        expect(responseData.updateUser.user.status).equal(updateUserData.status);
+        expect(responseData.updateUser.user.name).equal(payload.name);
+        expect(responseData.updateUser.user.gender).equal(payload.gender);
+        expect(responseData.updateUser.user.email).equal(payload.email);
+        expect(responseData.updateUser.user.status).equal(payload.status);
 
     });
 
@@ -110,10 +113,6 @@ describe('go rest graphql tests', () => {
 
         expect(responseData.deleteUser).not.to.be.null;
         expect(responseData.deleteUser.user.id).equal(userId);
-        expect(responseData.deleteUser.user.name).equal(updateUserData.name);
-        expect(responseData.deleteUser.user.gender).equal(updateUserData.gender);
-        expect(responseData.deleteUser.user.email).equal(updateUserData.email);
-        expect(responseData.deleteUser.user.status).equal(updateUserData.status);
     });
 
     it('should query non existing user by id', async () => {

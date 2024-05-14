@@ -97,8 +97,8 @@ Sample Report
 
 ### GraphQL Topics to Explore
  - [x] basics of GraphQL (query, mutation)
- - [ ] advance topics (fragments, directive, unions, aliases)
- - [ ] parameterize query with arguments and variables
+ - [ ] advance topics (fragments, unions, aliases)
+ - [ ] filters using arguments, variables, directive
  - [ ] setting default variable
  - [ ] variables inside fragments
  - [ ] use of directive to build dynamic/reusable query

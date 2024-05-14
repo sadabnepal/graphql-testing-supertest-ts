@@ -1,9 +1,15 @@
+export type genderType = 'male' | 'female';
+
+export type statusType = 'active' | 'inactive';
+
+export interface IUserOmittedID extends Omit<IUser, 'id'> { }
+
 export interface IUser {
     id: number;
     name: string;
     email: string;
-    gender: string;
-    status: string;
+    gender: genderType;
+    status: statusType;
 }
 
 export interface IUsers {

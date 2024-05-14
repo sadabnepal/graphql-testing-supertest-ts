@@ -1,11 +1,13 @@
-export const createUserPayload = (name: string, gender: 'male' | 'female', email: string, status: 'active' | 'inactive') => {
+import { IUser, IUserOmittedID } from "../types/users";
+
+export const createUserPayload = (data: IUserOmittedID) => {
     return `mutation {
         createUser(
             input: {
-                name: "${name}"
-                gender: "${gender}"
-                email: "${email}"
-                status: "${status}"
+                name: "${data.name}"
+                gender: "${data.gender}"
+                email: "${data.email}"
+                status: "${data.status}"
             }
         ) {
             user {
@@ -20,15 +22,15 @@ export const createUserPayload = (name: string, gender: 'male' | 'female', email
 };
 
 
-export const updateUserPayload = (id: number, name: string, gender: 'male' | 'female', email: string, status: 'active' | 'inactive') => {
+export const updateUserPayload = (data: IUser) => {
     return `mutation {
         updateUser(
             input: {
-                id: ${id}
-                name: "${name}"
-                gender: "${gender}"
-                email: "${email}"
-                status: "${status}"
+                id: ${data.id}
+                name: "${data.name}"
+                gender: "${data.gender}"
+                email: "${data.email}"
+                status: "${data.status}"
             }
         ) {
             user {
@@ -42,7 +44,7 @@ export const updateUserPayload = (id: number, name: string, gender: 'male' | 'fe
     }`;
 };
 
-export const deleteUserPayload = (id: string | number) => {
+export const deleteUserPayload = (id: number) => {
     return `mutation {
         deleteUser(
             input: {
