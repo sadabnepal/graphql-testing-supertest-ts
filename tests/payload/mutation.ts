@@ -1,7 +1,10 @@
 import { IUser, IUserOmittedID } from '../types/users';
+import { userFragments, userResponseFields } from './fragments';
 
 export const createUserPayload = (data: IUserOmittedID) => {
-    return `mutation {
+    return `
+    ${userFragments}
+    mutation {
         createUser(
             input: {
                 name: "${data.name}"
@@ -11,11 +14,7 @@ export const createUserPayload = (data: IUserOmittedID) => {
             }
         ) {
             user {
-                id
-                name
-                gender
-                email
-                status
+                ...userFragments
             }
         }
     }`;
@@ -23,7 +22,9 @@ export const createUserPayload = (data: IUserOmittedID) => {
 
 
 export const updateUserPayload = (data: IUser) => {
-    return `mutation {
+    return `
+    ${userFragments}
+    mutation {
         updateUser(
             input: {
                 id: ${data.id}
@@ -34,11 +35,7 @@ export const updateUserPayload = (data: IUser) => {
             }
         ) {
             user {
-                id
-                name
-                gender
-                email
-                status
+                ...userFragments
             }
         }
     }`;
@@ -52,11 +49,7 @@ export const deleteUserPayload = (id: number) => {
             }
         ) {
             user {
-                id
-                name
-                gender
-                email
-                status
+                ${userResponseFields}
             }
         }
     }`;
