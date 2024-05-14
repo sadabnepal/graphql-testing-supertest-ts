@@ -15,5 +15,5 @@ export const updateUserData = (userId: number): IUser => {
         gender: faker.person.sexType(),
         email: faker.internet.email(),
         status: 'active'
-    }
+    };
 };

@@ -1,4 +1,4 @@
-import { IUser, IUserOmittedID } from "../types/users";
+import { IUser, IUserOmittedID } from '../types/users';
 
 export const createUserPayload = (data: IUserOmittedID) => {
     return `mutation {
