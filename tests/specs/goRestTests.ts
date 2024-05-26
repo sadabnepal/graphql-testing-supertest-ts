@@ -1,11 +1,11 @@
 import { expect } from 'chai';
+import { createUserData, updateUserData } from 'data/faker';
 import { config } from 'dotenv';
-import { createUserData, updateUserData } from '../data/faker';
-import { mutateGraphQl, queryGraphQl } from '../helper/apiUtils';
-import { queryUsersWithNodeDirectivePayload } from '../payload/directives';
-import { createUserPayload, deleteUserPayload, updateUserPayload } from '../payload/mutation';
-import { queryAllUserPayload, queryUserByIdPayload } from '../payload/queries';
-import { INonExistingUserError, IUser, IUserCreate, IUserDelete, IUserUpdate, IUsers } from '../types/users';
+import { mutateGraphQl, queryGraphQl } from 'helper/apiUtils';
+import { queryUsers } from 'payload/directives';
+import { createUserPayload, deleteUserPayload, updateUserPayload } from 'payload/mutation';
+import { queryAllUserPayload, queryUserByIdPayload } from 'payload/queries';
+import { INonExistingUserError, IUser, IUserCreate, IUserDelete, IUserUpdate, IUsers } from 'types/users';
 config();
 
 const TOKEN = process.env.GO_RES_USER_TOKEN;
@@ -134,7 +134,7 @@ describe('go rest graphql tests', () => {
     });
 
     it('should query user count only using directives', async () => {
-        const response = await queryGraphQl(TOKEN, queryUsersWithNodeDirectivePayload(false));
+        const response = await queryGraphQl(TOKEN, queryUsers(false));
         expect(response.statusCode).equal(200);
 
         const responseData: IUsers = response.body.data;
@@ -145,7 +145,7 @@ describe('go rest graphql tests', () => {
     });
 
     it('should query user with all nodes using directives', async () => {
-        const response = await queryGraphQl(TOKEN, queryUsersWithNodeDirectivePayload(true));
+        const response = await queryGraphQl(TOKEN, queryUsers(true));
         expect(response.statusCode).equal(200);
 
         const responseData: IUsers = response.body.data;

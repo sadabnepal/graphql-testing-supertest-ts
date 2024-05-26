@@ -2,6 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "baseUrl": "./tests"
     // "allowSyntheticDefaultImports": true,
     // "forceConsistentCasingInFileNames": true,
     // "strict": true,
@@ -19,6 +20,10 @@
     // "noImplicitOverride": true,
     // "skipLibCheck": true
   },
-  "include": ["tests/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "tests/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

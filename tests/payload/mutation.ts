@@ -1,4 +1,4 @@
-import { IUser, IUserOmittedID } from '../types/users';
+import { IUser, IUserOmittedID } from 'types/users';
 import { userFragments, userResponseFields } from './fragments';
 
 export const createUserPayload = (data: IUserOmittedID) => {

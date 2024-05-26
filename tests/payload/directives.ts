@@ -1,6 +1,6 @@
 import { userResponseFields } from './fragments';
 
-export const queryUsersWithNodeDirectivePayload = (includeNodes = true) => {
+export const queryUsers = (includeNodes: boolean) => {
     return `{
         users {
             totalCount

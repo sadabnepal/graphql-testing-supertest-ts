@@ -21,7 +21,7 @@ module.exports = {
         'showSkipped=true',
         'showHooks=failed'
     ],
-    require: ['ts-node/register'],
+    require: ['ts-node/register', 'tsconfig-paths/register'],
     parallel: false,
     recursive: false,
     retries: 0,
