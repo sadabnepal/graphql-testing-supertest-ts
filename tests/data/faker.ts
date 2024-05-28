@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { IUser, IUserOmittedID } from 'types/users';
+import { IUser, IUserCreateRequest } from 'types/users';
 
-export const createUserData: IUserOmittedID = {
+export const createUserData: IUserCreateRequest = {
     name: faker.person.fullName(),
     gender: faker.person.sexType(),
     email: faker.internet.email(),

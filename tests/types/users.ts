@@ -1,15 +1,12 @@
-export type genderType = 'male' | 'female';
-
-export type statusType = 'active' | 'inactive';
-
-export interface IUserOmittedID extends Omit<IUser, 'id'> { }
+type Gender = 'male' | 'female';
+type Status = 'active' | 'inactive';
 
 export interface IUser {
     id: number;
     name: string;
     email: string;
-    gender: genderType;
-    status: statusType;
+    gender: Gender;
+    status: Status;
 }
 
 export interface IUsers {
@@ -19,19 +16,21 @@ export interface IUsers {
     }
 }
 
-export interface IUserCreate {
+export interface IUserCreateRequest extends Omit<IUser, 'id'> { }
+
+export interface IUserCreateResponse {
     createUser: {
         user: IUser
     }
 }
 
-export interface IUserUpdate {
+export interface IUserUpdateResponse {
     updateUser: {
         user: IUser
     }
 }
 
-export interface IUserDelete {
+export interface IUserDeleteResponse {
     deleteUser: {
         user: IUser
     }

@@ -5,7 +5,7 @@ import { mutateGraphQl, queryGraphQl } from 'helper/apiUtils';
 import { queryUsers } from 'payload/directives';
 import { createUserPayload, deleteUserPayload, updateUserPayload } from 'payload/mutation';
 import { queryAllUserPayload, queryUserByIdPayload } from 'payload/queries';
-import { INonExistingUserError, IUser, IUserCreate, IUserDelete, IUserUpdate, IUsers } from 'types/users';
+import { INonExistingUserError, IUser, IUserCreateResponse, IUserDeleteResponse, IUserUpdateResponse, IUsers } from 'types/users';
 config();
 
 const TOKEN = process.env.GO_RES_USER_TOKEN;
@@ -41,7 +41,7 @@ describe('go rest graphql tests', () => {
         const response = await mutateGraphQl(TOKEN, createUserPayload(createRandomUser));
         expect(response.statusCode).equal(200);
 
-        const responseData: IUserCreate = response.body.data;
+        const responseData: IUserCreateResponse = response.body.data;
 
         userId = responseData.createUser.user.id;
         console.log('----------------------------');
@@ -84,7 +84,7 @@ describe('go rest graphql tests', () => {
 
         expect(response.body.data).not.undefined;
 
-        const responseData: IUserUpdate = response.body.data;
+        const responseData: IUserUpdateResponse = response.body.data;
 
         console.log('----------------------------');
         console.log('updated user => id: ', userId);
@@ -105,7 +105,7 @@ describe('go rest graphql tests', () => {
 
         expect(response.body.data).not.undefined;
 
-        const responseData: IUserDelete = response.body.data;
+        const responseData: IUserDeleteResponse = response.body.data;
 
         console.log('----------------------------');
         console.log('deleted user => id: ', userId);

@@ -1,7 +1,7 @@
-import { IUser, IUserOmittedID } from 'types/users';
+import { IUser, IUserCreateRequest } from 'types/users';
 import { userFragments, userResponseFields } from './fragments';
 
-export const createUserPayload = (data: IUserOmittedID) => {
+export const createUserPayload = (data: IUserCreateRequest) => {
     return `
     ${userFragments}
     mutation {
