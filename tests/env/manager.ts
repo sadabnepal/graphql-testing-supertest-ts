@@ -1,5 +1,6 @@
 import { config } from 'dotenv';
 import { join } from 'path';
+config();
 
 const environment = process.env.ENV;
 if (!environment) throw new Error('please pass the environment variable. Options: | dev | stage | prod |');
