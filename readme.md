@@ -10,8 +10,8 @@ Boilerplate graphql test framework using Mocha, SuperTest and TypeScript.
 Clone Repository
 
 ```bash
-git clone https://github.com/sadabnepal/graphql-supertest-api.git
-cd graphql-supertest-api
+git clone https://github.com/sadabnepal/graphql-testing-supertest-ts.git
+cd graphql-testing-supertest-ts
 ```
 
 Install packages:
